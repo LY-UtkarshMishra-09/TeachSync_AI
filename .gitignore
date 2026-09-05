@@ -137,3 +137,5 @@ dist
 .pnpm-store/
 
 .DS_Store
+.env.local
+node_modules/.next/
