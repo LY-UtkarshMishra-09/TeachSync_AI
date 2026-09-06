@@ -103,7 +103,7 @@ export async function POST(request: NextRequest) {
     // AgoraClient authenticates API calls to the Agora Conversational AI service.
     // area: change to Area.EU or Area.AP for European or Asia-Pacific deployments.
     const client = new AgoraClient({
-      area: Area.US,
+      area: Area.AP,
       appId,
       appCertificate,
     });

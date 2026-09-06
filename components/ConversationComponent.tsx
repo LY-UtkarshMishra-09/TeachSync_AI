@@ -177,6 +177,13 @@ export default function ConversationComponent({
   // graph inside MicButtonWithVisualizer. Mute uses track.setEnabled() only.
   const { localMicrophoneTrack } = useLocalMicrophoneTrack(isReady);
   const { localCameraTrack } = useLocalCameraTrack(isReady);
+  useEffect(() => {
+    console.log("=== TeachSync Audio Debug ===");
+    console.log("isReady:", isReady);
+    console.log("microphoneTrack:", localMicrophoneTrack);
+    console.log("microphone enabled:", localMicrophoneTrack?.enabled);
+    console.log("cameraTrack:", localCameraTrack);
+  }, [isReady, localMicrophoneTrack, localCameraTrack]);
 
   // ENABLE_AUDIO_PTS is a module-level SDK parameter (not on the client instance).
   // It must be set before publishing audio for transcript timing to be accurate.
@@ -521,7 +528,7 @@ export default function ConversationComponent({
                 <LocalUser
                   audioTrack={localMicrophoneTrack}
                   videoTrack={localCameraTrack}
-                  cameraOn={true}
+                  cameraOn={isCameraEnabled}
                   micOn={false}
                   playAudio={false}
                 />
