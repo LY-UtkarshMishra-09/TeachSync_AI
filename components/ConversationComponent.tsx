@@ -537,7 +537,7 @@ export default function ConversationComponent({
           role="region"
           aria-label="AI agent status visualization"
         >
-          <AgentVisualizer state={visualizerState} size="lg" />
+
           <div className="grid w-full max-w-6xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {/* You */}
             <div className="relative aspect-video overflow-hidden rounded-xl bg-black">
@@ -562,7 +562,10 @@ export default function ConversationComponent({
               </div>
             </div>
             {/* Remote Participants */}
-            {remoteUsers.map((user) => (
+            {remoteUsers
+              .filter((user) => String(user.uid) !== String(DEFAULT_AGENT_UID))
+              .map((user) => (
+              
               <div
                 key={user.uid}
                 className="relative aspect-video overflow-hidden rounded-xl bg-black"
