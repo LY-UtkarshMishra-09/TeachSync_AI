@@ -534,8 +534,8 @@ export default function ConversationComponent({
           aria-label="AI agent status visualization"
         >
           <AgentVisualizer state={visualizerState} size="lg" />
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            {/* Your Video */}
+          <div className="grid w-full max-w-6xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {/* You */}
             <div className="relative aspect-video overflow-hidden rounded-xl bg-black">
               {localCameraTrack ? (
                 <LocalUser
@@ -550,18 +550,25 @@ export default function ConversationComponent({
                   Camera Off
                 </div>
               )}
-              <div className="absolute bottom-3 left-3 rounded-md bg-black/60 px-3 py-1 text-sm text-white">
+              <div className="absolute bottom-3 left-3 rounded-md bg-black/70 px-3 py-1 text-sm text-white">
                 You
               </div>
+              <div className="absolute right-3 top-3 rounded-md bg-black/70 px-2 py-1 text-xs text-white">
+                {isEnabled ? 'Mic On' : 'Muted'}
+              </div>
             </div>
-            {/* Other Participants */}
+            {/* Remote Participants */}
             {remoteUsers.map((user) => (
               <div
                 key={user.uid}
                 className="relative aspect-video overflow-hidden rounded-xl bg-black"
               >
-                <RemoteUser user={user} />
-                <div className="absolute bottom-3 left-3 rounded-md bg-black/60 px-3 py-1 text-sm text-white">
+                <RemoteUser 
+                  user={user}
+                  playAudio = {true}
+                />
+
+                <div className="absolute bottom-3 left-3 rounded-md bg-black/70 px-3 py-1 text-sm text-white">
                   Participant {user.uid}
                 </div>
               </div>
