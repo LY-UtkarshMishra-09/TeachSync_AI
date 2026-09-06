@@ -388,6 +388,25 @@ export default function ConversationComponent({
 
   // Publish local mic once the track exists; usePublish waits for RTC connection.
   usePublish([localMicrophoneTrack, localCameraTrack]);
+  useEffect(() => {
+  if (!localMicrophoneTrack) {
+    console.log('[TeachSync Audio] No microphone track');
+    return;
+  }
+
+  console.log('[TeachSync Audio] Microphone track ready', {
+    enabled: localMicrophoneTrack.enabled,
+    muted: localMicrophoneTrack.muted,
+    ready: isReady,
+    joined: joinSuccess,
+    uid: client.uid,
+  });
+}, [
+  localMicrophoneTrack,
+  isReady,
+  joinSuccess,
+  client,
+]);
 
 
   useClientEvent(client, 'user-joined', (user) => {
