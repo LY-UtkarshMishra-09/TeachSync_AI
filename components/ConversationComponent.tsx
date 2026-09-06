@@ -100,6 +100,10 @@ export default function ConversationComponent({
 }: ConversationComponentProps) {
   const client = useRTCClient();
   const remoteUsers = useRemoteUsers();
+  const meetingCode = agoraData.channel
+    .replace(/^classroom-/, '')
+    .toUpperCase();
+  const participantCount = remoteUsers.length + 1;
   const [isEnabled, setIsEnabled] = useState(true);
   const [isCameraEnabled, setIsCameraEnabled] = useState(true);
   const [isAgentConnected, setIsAgentConnected] = useState(false);
